@@ -1,1 +1,131 @@
 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SQL Basics | INFO 3401 Portfolio</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: #f4f7fb;
+      color: #1e293b;
+      line-height: 1.6;
+    }
+    header {
+      background: #102b50;
+      color: white;
+      text-align: center;
+      padding: 55px 20px;
+    }
+    header h1 {
+      font-size: 44px;
+      margin: 0;
+    }
+    header p {
+      font-size: 22px;
+      margin-bottom: 0;
+    }
+    main {
+      max-width: 1000px;
+      margin: 35px auto;
+      padding: 0 20px;
+    }
+    section {
+      background: white;
+      padding: 28px;
+      margin-bottom: 24px;
+      border-radius: 12px;
+      box-shadow: 0 3px 12px #dce3ed;
+    }
+    h2 { color: #2056a3; font-size: 28px; }
+    h3 { font-size: 22px; }
+    pre {
+      background: #102b50;
+      color: #e5f1ff;
+      padding: 18px;
+      border-radius: 8px;
+      overflow-x: auto;
+      font-size: 18px;
+    }
+    .label { color: #2056a3; font-weight: bold; }
+    footer {
+      text-align: center;
+      padding: 25px;
+      background: #102b50;
+      color: white;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>SQL Basics</h1>
+    <p>How Databases Work | INFO 3401 Portfolio Project</p>
+  </header>
+
+  <main>
+    <section>
+      <h2>Introduction to SQL</h2>
+      <p>SQL stands for Structured Query Language. It helps people retrieve,
+      filter, sort, and combine information stored in relational databases.
+      Businesses use SQL to analyze sales, manage customers, and make
+      data-informed decisions.</p>
+    </section>
+
+    <section>
+      <h2>1. SELECT — Retrieve Data</h2>
+      <p>SELECT chooses which columns to display from a table.</p>
+      <pre>SELECT name, email
+FROM customers;</pre>
+      <p><span class="label">Explanation:</span> This query returns the
+      name and email columns for every row in the customers table.</p>
+    </section>
+
+    <section>
+      <h2>2. WHERE — Filter Data</h2>
+      <p>WHERE limits results to rows that match a condition.</p>
+      <pre>SELECT name, email
+FROM customers
+WHERE city = 'Denver';</pre>
+      <p><span class="label">Explanation:</span> This query returns only
+      customers whose city value is Denver.</p>
+    </section>
+
+    <section>
+      <h2>3. ORDER BY — Sort Data</h2>
+      <p>ORDER BY sorts results. DESC means descending, while ASC means ascending.</p>
+      <pre>SELECT name, total_spent
+FROM customers
+ORDER BY total_spent DESC;</pre>
+      <p><span class="label">Explanation:</span> This query lists customers
+      from the highest total_spent value to the lowest.</p>
+    </section>
+
+    <section>
+      <h2>4. JOIN — Combine Tables</h2>
+      <p>JOIN combines related information from two tables using a shared key.</p>
+      <pre>SELECT orders.order_id, customers.name
+FROM orders
+JOIN customers
+  ON orders.customer_id = customers.customer_id;</pre>
+      <p><span class="label">Explanation:</span> This query pairs each
+      matching order with the name of the customer who placed it.</p>
+    </section>
+
+    <section>
+      <h2>Why SQL Matters</h2>
+      <p>SQL can help answer practical questions, such as which customers
+      live in a particular city, which customers spend the most, and which
+      orders belong to each customer.</p>
+      <p><strong>Key takeaway:</strong> SELECT retrieves data, WHERE filters
+      it, ORDER BY sorts it, and JOIN connects related tables.</p>
+    </section>
+  </main>
+
+  <footer>
+    INFO 3401 | SQL Portfolio Project
+  </footer>
+</body>
+</html>
+
