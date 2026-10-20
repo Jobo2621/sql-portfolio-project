@@ -1,257 +1,128 @@
 
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>SQL Portfolio | INFO 3401</title>
+<title>My SQL Portfolio</title>
 <style>
-* { box-sizing: border-box; }
 body {
-  margin: 0;
-  font-family: Arial, sans-serif;
-  background: #f3f6fb;
-  color: #202d40;
-  line-height: 1.7;
+  font-family: Arial;
+  background: #eee;
+  margin: 20px;
+  line-height: 1.5;
 }
-header {
-  background: #102b50;
+header, footer {
+  background: #18385c;
   color: white;
+  padding: 15px;
   text-align: center;
-  padding: 65px 20px;
 }
-header h1 { font-size: clamp(36px, 6vw, 54px); margin: 0; }
-header p { font-size: 20px; color: #d9e8ff; }
-nav {
-  background: white;
-  text-align: center;
-  padding: 16px;
-  border-bottom: 1px solid #dbe3ef;
-}
-nav a {
-  color: #2056a3;
-  font-weight: bold;
-  text-decoration: none;
-  margin: 0 12px;
-}
-main { max-width: 1050px; margin: 35px auto; padding: 0 20px; }
 section {
   background: white;
-  padding: 30px;
-  margin-bottom: 26px;
-  border-radius: 14px;
-  box-shadow: 0 4px 15px rgba(20,45,80,.07);
+  padding: 15px;
+  margin: 15px 0;
 }
-h2 { color: #2056a3; font-size: 30px; margin-top: 0; }
-h3 { font-size: 22px; margin-bottom: 8px; }
-.tag {
-  display: inline-block;
-  background: #e4edff;
-  color: #204e91;
-  padding: 4px 10px;
-  border-radius: 20px;
-  font-size: 14px;
-  font-weight: bold;
-}
+h2 { color: #18385c; }
 pre {
-  background: #102b50;
-  color: #e5efff;
-  padding: 22px;
-  border-radius: 9px;
+  background: #eee;
+  padding: 10px;
   overflow-x: auto;
-  font-size: 15px;
-  line-height: 1.65;
-}
-.explanation {
-  background: #f1f6ff;
-  border-left: 4px solid #3677cf;
-  padding: 14px 18px;
-  margin-top: 14px;
-}
-footer {
-  background: #102b50;
-  color: white;
-  text-align: center;
-  padding: 25px;
-}
-@media (max-width: 600px) {
-  section { padding: 20px; }
-  nav a { display: inline-block; margin: 5px; }
-  pre { font-size: 13px; }
 }
 </style>
 </head>
+
 <body>
 
 <header>
-  <h1>SQL Portfolio Project</h1>
-  <p>Turning Database Records into Business Insights</p>
-  <span class="tag">INFO 3401</span>
+<h1>My SQL Portfolio</h1>
+<p>INFO 3401 Project</p>
 </header>
 
-<nav>
-  <a href="#intro">Introduction</a>
-  <a href="#basics">SQL Basics</a>
-  <a href="#advanced">Advanced Analysis</a>
-  <a href="#conclusion">Conclusion</a>
-</nav>
-
-<main>
-<section id="intro">
-  <h2>Introduction to SQL</h2>
-  <p>SQL stands for Structured Query Language. It is used to retrieve,
-  organize, and analyze information in relational databases. Businesses
-  use SQL to understand customer behavior, track sales, and support
-  data-informed decisions.</p>
-  <p><strong>Project objective:</strong> Demonstrate basic SQL commands
-  and more advanced techniques for analyzing customer and sales data.</p>
-  <p><strong>Example data model:</strong> The queries assume an
-  <code>orders</code> table containing <code>customer_id</code>,
-  <code>order_id</code>, <code>order_date</code>, and
-  <code>total_amount</code>. These are illustrative examples and have
-  not been run against a real database.</p>
+<section>
+<h2>Introduction</h2>
+<p>SQL is used to find and organize information in databases.
+This project shows basic and advanced SQL queries that can help
+businesses understand customers and sales.</p>
+<p>The examples use customers and orders tables. They are examples
+and have not been tested on a real database.</p>
 </section>
 
-<section id="basics">
-  <h2>SQL Fundamentals</h2>
+<section>
+<h2>SQL Basics</h2>
 
-  <h3>SELECT — Retrieve Data</h3>
-  <pre>SELECT name, email
+<h3>1. SELECT</h3>
+<pre>SELECT name, email
 FROM customers;</pre>
-  <p>This returns the name and email columns for every customer.</p>
+<p>Shows customer names and emails.</p>
 
-  <h3>WHERE — Filter Data</h3>
-  <pre>SELECT name, email
+<h3>2. WHERE</h3>
+<pre>SELECT name, email
 FROM customers
 WHERE city = 'Denver';</pre>
-  <p>This returns only customers whose city is Denver.</p>
+<p>Shows customers who live in Denver.</p>
 
-  <h3>ORDER BY — Sort Data</h3>
-  <pre>SELECT name, total_spent
+<h3>3. ORDER BY</h3>
+<pre>SELECT name, total_spent
 FROM customers
 ORDER BY total_spent DESC;</pre>
-  <p>This sorts customers from the highest spending value to the lowest.</p>
+<p>Lists customers from highest spending to lowest.</p>
 
-  <h3>JOIN — Combine Tables</h3>
-  <pre>SELECT orders.order_id, customers.name
+<h3>4. JOIN</h3>
+<pre>SELECT orders.order_id, customers.name
 FROM orders
 JOIN customers
-  ON orders.customer_id = customers.customer_id;</pre>
-  <p>This matches each order to the corresponding customer name.</p>
+ON orders.customer_id = customers.customer_id;</pre>
+<p>Connects orders to the customers who made them.</p>
 </section>
 
-<section id="advanced">
-  <h2>Advanced SQL Analysis</h2>
-  <p>These three examples use grouping, subqueries, and window functions
-  to answer realistic business questions.</p>
+<section>
+<h2>Advanced SQL</h2>
 
-  <h3>Query 1: Who are the top five customers by spending?</h3>
-  <span class="tag">GROUP BY · SUM · ORDER BY · LIMIT</span>
-  <pre>SELECT
-    customer_id,
-    SUM(total_amount) AS total_spent
+<h3>1. Top Five Customers</h3>
+<pre>SELECT customer_id, SUM(total_amount) AS spent
 FROM orders
 GROUP BY customer_id
-ORDER BY total_spent DESC
+ORDER BY spent DESC
 LIMIT 5;</pre>
-  <div class="explanation">
-    <strong>How it works:</strong>
-    <ul>
-      <li><code>SUM(total_amount)</code> adds up each customer's order amounts.</li>
-      <li><code>GROUP BY customer_id</code> creates one result per customer.</li>
-      <li><code>ORDER BY ... DESC</code> ranks the largest totals first.</li>
-      <li><code>LIMIT 5</code> returns only the top five customers.</li>
-    </ul>
-    <strong>Business value:</strong> Helps identify high-value customers
-    for loyalty programs and customer-retention efforts.
-  </div>
+<p>SUM adds up each customer's orders. This query shows the five
+customers who spent the most.</p>
 
-  <h3>Query 2: How do sales change month to month?</h3>
-  <span class="tag">Subquery · SUM · LAG · Window Function</span>
-  <pre>WITH monthly_sales AS (
-    SELECT
-        DATE_TRUNC('month', order_date) AS sales_month,
-        SUM(total_amount) AS revenue
-    FROM orders
-    GROUP BY DATE_TRUNC('month', order_date)
-),
-sales_comparison AS (
-    SELECT
-        sales_month,
-        revenue,
-        LAG(revenue) OVER (
-            ORDER BY sales_month
-        ) AS previous_month_revenue
-    FROM monthly_sales
+<h3>2. Monthly Sales</h3>
+<pre>WITH sales AS (
+  SELECT DATE_TRUNC('month', order_date) AS month,
+         SUM(total_amount) AS total
+  FROM orders
+  GROUP BY DATE_TRUNC('month', order_date)
 )
-SELECT
-    sales_month,
-    revenue,
-    previous_month_revenue,
-    revenue - previous_month_revenue AS sales_change
-FROM sales_comparison
-ORDER BY sales_month;</pre>
-  <div class="explanation">
-    <strong>How it works:</strong>
-    <ul>
-      <li>The first CTE, <code>monthly_sales</code>, groups orders into months and calculates each month's revenue.</li>
-      <li><code>LAG()</code> looks at the previous month's revenue without joining the table to itself.</li>
-      <li>The final query subtracts the previous month's revenue from the current month's revenue.</li>
-    </ul>
-    <strong>Business value:</strong> Helps businesses spot periods of growth
-    or declining revenue.
-    <br><strong>SQL dialect:</strong> PostgreSQL, using
-    <code>DATE_TRUNC</code> and <code>LAG</code>.
-  </div>
+SELECT month, total,
+       LAG(total) OVER (ORDER BY month) AS prev
+FROM sales
+ORDER BY month;</pre>
+<p>This adds up sales each month and shows the previous month's
+sales beside it. It uses PostgreSQL syntax.</p>
 
-  <h3>Query 3: Which customers spend above the average?</h3>
-  <span class="tag">Subquery · GROUP BY · HAVING · AVG</span>
-  <pre>WITH customer_spending AS (
-    SELECT
-        customer_id,
-        SUM(total_amount) AS total_spent
-    FROM orders
-    GROUP BY customer_id
+<h3>3. Spending Above Average</h3>
+<pre>SELECT customer_id, SUM(total_amount) AS spent
+FROM orders
+GROUP BY customer_id
+HAVING SUM(total_amount) > (
+  SELECT AVG(total_amount) FROM orders
 )
-SELECT
-    customer_id,
-    total_spent
-FROM customer_spending
-WHERE total_spent > (
-    SELECT AVG(total_spent)
-    FROM customer_spending
-)
-ORDER BY total_spent DESC;</pre>
-  <div class="explanation">
-    <strong>How it works:</strong>
-    <ul>
-      <li>The CTE calculates the total spending for each customer.</li>
-      <li>The subquery calculates the average of those customer totals.</li>
-      <li>The outer query returns customers whose total exceeds that average.</li>
-    </ul>
-    <strong>Business value:</strong> Helps identify above-average customers
-    for targeted marketing and retention.
-  </div>
+ORDER BY spent DESC;</pre>
+<p>This finds customers whose total spending is above the average
+order amount. The average here is per order, not per customer.</p>
 </section>
 
-<section id="conclusion">
-  <h2>Conclusion</h2>
-  <p>This project demonstrates how SQL can move beyond retrieving individual
-  records to answer larger business questions.</p>
-  <ul>
-    <li>Aggregation summarizes sales and customer activity.</li>
-    <li>Common table expressions organize complex queries into readable steps.</li>
-    <li>Window functions compare values across time periods.</li>
-    <li>Subqueries compare individual customer totals against an overall average.</li>
-  </ul>
-  <p>These techniques can support customer analysis, sales reporting, and
-  business decision-making.</p>
+<section>
+<h2>Conclusion</h2>
+<p>SQL can help businesses organize information, track sales,
+compare results and identify important customers. These queries
+show how basic and advanced SQL can answer business questions.</p>
 </section>
-</main>
 
 <footer>
-  INFO 3401 · SQL Portfolio Project
+<p>INFO 3401 - SQL Portfolio</p>
 </footer>
 
 </body>
 </html>
+```
